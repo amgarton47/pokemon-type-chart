@@ -15,17 +15,42 @@ div {
   display: grid;
 }
 
+.container > div {
+  text-align: center;
+  align-self: center;
+}
+
+.bottom-btns {
+  display: flex;
+  align-items: center;
+  width: auto;
+}
+
+.bottom-btns > button {
+  border-radius: 200px;
+  background-color: #595761;
+  color: white;
+  height: 50px;
+  width: 50px;
+}
+
+.bottom-btns > button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 /* EFFECTIVENESS TYPES */
 .ineffective {
   color: red;
 }
 
 .effective {
-  color: green;
+  color: rgb(13, 181, 13);
+  font-weight: bolder;
 }
 
 .neutral {
-  color: gray;
+  color: rgb(110, 109, 109);
 }
 
 .no-effect {
@@ -33,7 +58,7 @@ div {
   font-weight: bolder;
 }
 
-.btn-wrapper {
+.type-btns-wrapper {
   width: 600px;
   margin: auto auto;
   display: grid;
@@ -43,14 +68,21 @@ div {
   align-items: center;
 }
 
+.btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
 /* Type Labels */
 .type-label {
   display: flex;
   /* background-color: #fba54c; */
   justify-content: space-evenly;
   align-items: center;
-  height: 35px;
-  width: 125px;
+  height: 20px;
+  width: auto;
   border-radius: 25px;
 }
 

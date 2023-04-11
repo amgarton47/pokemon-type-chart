@@ -69,7 +69,7 @@ const createFancyCell = function (parentId, html) {
 
   emblem.appendChild(img);
   cell.appendChild(emblem);
-  cell.appendChild(innerDiv);
+  // cell.appendChild(innerDiv);
   document.getElementById(parentId).appendChild(cell);
 };
 

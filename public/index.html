@@ -8,66 +8,77 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <div>
+      <img src="Pokémon_logo.svg" />
+      <br />
+      <b>Pokémon Type Chart</b>
+      <p style="font-size: smaller">
+        Click on the type icons below to include them in the chart!
+      </p>
+    </div>
     <div class="container" id="chart"></div>
 
     <div class="btn-wrapper">
-      <div class="icon normal not-selected" id="normal">
-        <img src="icons/normal.svg" draggable="false" />
+      <div class="type-btns-wrapper">
+        <div class="icon normal not-selected" id="normal">
+          <img src="icons/normal.svg" draggable="false" />
+        </div>
+        <div class="icon fire" id="fire">
+          <img src="icons/fire.svg" draggable="false" />
+        </div>
+        <div class="icon water" id="water">
+          <img src="icons/water.svg" draggable="false" />
+        </div>
+        <div class="icon electric not-selected" id="electric">
+          <img src="icons/electric.svg" draggable="false" />
+        </div>
+        <div class="icon grass" id="grass">
+          <img src="icons/grass.svg" draggable="false" />
+        </div>
+        <div class="icon ice not-selected" id="ice">
+          <img src="icons/ice.svg" draggable="false" />
+        </div>
+        <div class="icon fighting not-selected" id="fighting">
+          <img src="icons/fighting.svg" draggable="false" />
+        </div>
+        <div class="icon poison not-selected" id="poison">
+          <img src="icons/poison.svg" draggable="false" />
+        </div>
+        <div class="icon ground not-selected" id="ground">
+          <img src="icons/ground.svg" draggable="false" />
+        </div>
+        <div class="icon flying not-selected" id="flying">
+          <img src="icons/flying.svg" draggable="false" />
+        </div>
+        <div class="icon psychic not-selected" id="psychic">
+          <img src="icons/psychic.svg" draggable="false" />
+        </div>
+        <div class="icon bug not-selected" id="bug">
+          <img src="icons/bug.svg" draggable="false" />
+        </div>
+        <div class="icon rock not-selected" id="rock">
+          <img src="icons/rock.svg" draggable="false" />
+        </div>
+        <div class="icon ghost not-selected" id="ghost">
+          <img src="icons/ghost.svg" draggable="false" />
+        </div>
+        <div class="icon dragon not-selected" id="dragon">
+          <img src="icons/dragon.svg" draggable="false" />
+        </div>
+        <div class="icon dark not-selected" id="dark">
+          <img src="icons/dark.svg" draggable="false" />
+        </div>
+        <div class="icon steel not-selected" id="steel">
+          <img src="icons/steel.svg" draggable="false" />
+        </div>
+        <div class="icon fairy not-selected" id="fairy">
+          <img src="icons/fairy.svg" draggable="false" />
+        </div>
       </div>
-      <div class="icon fire" id="fire">
-        <img src="icons/fire.svg" draggable="false" />
+      <div class="bottom-btns">
+        <button id="all-btn">All</button>
+        <button id="none-btn">None</button>
       </div>
-      <div class="icon water" id="water">
-        <img src="icons/water.svg" draggable="false" />
-      </div>
-      <div class="icon electric not-selected" id="electric">
-        <img src="icons/electric.svg" draggable="false" />
-      </div>
-      <div class="icon grass" id="grass">
-        <img src="icons/grass.svg" draggable="false" />
-      </div>
-      <div class="icon ice not-selected" id="ice">
-        <img src="icons/ice.svg" draggable="false" />
-      </div>
-      <div class="icon fighting not-selected" id="fighting">
-        <img src="icons/fighting.svg" draggable="false" />
-      </div>
-      <div class="icon poison not-selected" id="poison">
-        <img src="icons/poison.svg" draggable="false" />
-      </div>
-      <div class="icon ground not-selected" id="ground">
-        <img src="icons/ground.svg" draggable="false" />
-      </div>
-      <div class="icon flying not-selected" id="flying">
-        <img src="icons/flying.svg" draggable="false" />
-      </div>
-      <div class="icon psychic not-selected" id="psychic">
-        <img src="icons/psychic.svg" draggable="false" />
-      </div>
-      <div class="icon bug not-selected" id="bug">
-        <img src="icons/bug.svg" draggable="false" />
-      </div>
-      <div class="icon rock not-selected" id="rock">
-        <img src="icons/rock.svg" draggable="false" />
-      </div>
-      <div class="icon ghost not-selected" id="ghost">
-        <img src="icons/ghost.svg" draggable="false" />
-      </div>
-      <div class="icon dragon not-selected" id="dragon">
-        <img src="icons/dragon.svg" draggable="false" />
-      </div>
-      <div class="icon dark not-selected" id="dark">
-        <img src="icons/dark.svg" draggable="false" />
-      </div>
-      <div class="icon steel not-selected" id="steel">
-        <img src="icons/steel.svg" draggable="false" />
-      </div>
-      <div class="icon fairy not-selected" id="fairy">
-        <img src="icons/fairy.svg" draggable="false" />
-      </div>
-
-      <button id="all-btn">All</button>
-      <button id="none-btn">None</button>
     </div>
   </body>
   <script src="index.js"></script>
