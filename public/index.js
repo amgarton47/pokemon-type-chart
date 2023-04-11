@@ -47,12 +47,41 @@ const createCell = function (parentId, html) {
   return cell;
 };
 
-const applyCss = function (elt, entry) {};
+const createFancyCell = function (parentId, html) {
+  //   <div class="type-label fire">
+  //   <div class="icon-label">
+  //     <img src="icons/fire.svg" draggable="false" />
+  //   </div>
+  //   <div>FIRE</div>
+  // </div>
+  const cell = document.createElement("div");
+  cell.classList.add("type-label", html.toLowerCase());
 
-// const toggled = [...types];
+  const emblem = document.createElement("div");
+  emblem.classList.add("icon-label");
+
+  const img = document.createElement("img");
+  img.src = `icons/${html.toLowerCase()}.svg`;
+  img.draggable = "false";
+
+  const innerDiv = document.createElement("div");
+  innerDiv.innerHTML = html;
+
+  emblem.appendChild(img);
+  cell.appendChild(emblem);
+  cell.appendChild(innerDiv);
+  document.getElementById(parentId).appendChild(cell);
+};
+
+const clearGrid = () => {
+  const grid = document.getElementById("chart");
+  while (grid.firstChild) {
+    grid.removeChild(grid.firstChild);
+  }
+};
+
 let toggled = ["FIRE", "WATER", "GRASS"];
 const buttons = Array.from(document.getElementsByClassName("icon"));
-console.log(buttons);
 
 const populate = function () {
   // ensure pokemon types are always listed in the same order
@@ -65,33 +94,32 @@ const populate = function () {
 
   const grid = document.getElementById("chart");
   grid.style.gridTemplateColumns = `repeat(${toggled.length + 1}, 1fr)`;
-  createCell("chart", "---");
+  createCell("chart", "Attacker\\\\Defender");
 
   for (let i = 0; i < toggled.length; i++) {
-    const label = createCell("chart", toggled[i]);
-    // label.classList.toggle(toggled[i].toLowerCase());
+    createFancyCell("chart", toggled[i]);
   }
 
   for (let i = 0; i < toggled.length; i++) {
     let row_idx = types.indexOf(toggled[i]);
     let row = chart[row_idx];
 
-    createCell("chart", toggled[i]);
+    createFancyCell("chart", toggled[i]);
 
     for (let j = 0; j < toggled.length; j++) {
       let col_idx = types.indexOf(toggled[j]);
       let col = row[col_idx];
 
-      const neww = createCell("chart", `${col}`);
+      const cell = createCell("chart", `${col}`);
 
       if (col == 0) {
-        neww.classList.toggle("no-effect");
+        cell.classList.toggle("no-effect");
       } else if (col == 1) {
-        neww.classList.toggle("neutral");
+        cell.classList.toggle("neutral");
       } else if (col == 2) {
-        neww.classList.toggle("effective");
+        cell.classList.toggle("effective");
       } else if (col == 0.5) {
-        neww.classList.toggle("ineffective");
+        cell.classList.toggle("ineffective");
       }
     }
   }
@@ -99,12 +127,8 @@ const populate = function () {
 
 const handleClick = function () {
   this.classList.toggle("not-selected");
-  const grid = document.getElementById("chart");
-  while (grid.firstChild) {
-    grid.removeChild(grid.firstChild);
-  }
+  clearGrid();
   const idx = toggled.indexOf(this.id.toUpperCase());
-  console.log(idx);
   if (idx > -1) {
     toggled.splice(idx, 1);
   } else {
@@ -117,61 +141,28 @@ for (let i = 0; i < buttons.length; i++) {
   buttons[i].onclick = handleClick;
 }
 
+// initial population
 populate();
 
-// const cart = [
-//   {
-//     normal: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.5, 0, 1, 1, 0.5, 1],
-//   },
-//   {
-//     fire: [1, 0.5, 0.5, 1, 2, 2, 1, 1, 1, 1, 1, 2, 0.5, 1, 0.5, 1, 2, 1],
-//   },
-//   {
-//     water: [1, 2, 0.5, 1, 0.5, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1],
-//   },
-//   {
-//     electric: [1, 1, 2, 0.5, 0.5, 1, 1, 1, 0, 2, 1, 1, 1, 1, 0.5, 1, 1, 1],
-//   },
-//   {
-//     grass: [1, 0.5, 2, 1, 0.5, 1, 1, 0.5, 2, 0.5, 1, 0.5, 2, 1, 0.5, 1, 0.5, 1],
-//   },
-//   {
-//     ice: [1, 0.5, 0.5, 1, 2, 0.5, 1, 1, 2, 2, 1, 1, 1, 1, 2, 1, 0.5, 1],
-//   },
-//   {
-//     fighting: [2, 1, 1, 1, 1, 2, 1, 0.5, 1, 0.5, 0.5, 0.5, 2, 0, 1, 2, 2, 0.5],
-//   },
-//   {
-//     poison: [1, 1, 1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 0.5, 0.5, 1, 1, 0, 2],
-//   },
-//   {
-//     ground: [1, 2, 1, 2, 0.5, 1, 1, 2, 1, 0, 1, 0.5, 2, 1, 1, 1, 2, 1],
-//   },
-//   {
-//     flying: [1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 0.5, 1],
-//   },
-//   {
-//     psychic: [1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5, 1, 1, 1, 1, 0, 0.5, 1],
-//   },
-//   {
-//     bug: [1, 0.5, 1, 1, 2, 1, 0.5, 0.5, 1, 0.5, 2, 1, 1, 0.5, 1, 2, 0.5, 0.5],
-//   },
-//   {
-//     rock: [1, 2, 1, 1, 1, 2, 0.5, 1, 0.5, 2, 1, 2, 1, 1, 1, 1, 0.5, 1],
-//   },
-//   {
-//     ghost: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 1],
-//   },
-//   {
-//     dragon: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0.5, 0],
-//   },
-//   {
-//     dark: [1, 1, 1, 1, 1, 1, 0.5, 1, 1, 1, 2, 1, 1, 2, 1, 0.5, 1, 0.5],
-//   },
-//   {
-//     steel: [1, 0.5, 0.5, 0.5, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0.5, 2],
-//   },
-//   {
-//     fairy: [1, 0.5, 1, 1, 1, 1, 2, 0.5, 1, 1, 1, 1, 1, 1, 2, 2, 0.5, 1],
-//   },
-// ];
+const allButton = document.getElementById("all-btn");
+const noneButton = document.getElementById("none-btn");
+
+allButton.onclick = () => {
+  toggled = [...types];
+  clearGrid();
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("not-selected");
+  }
+  populate();
+};
+
+noneButton.onclick = () => {
+  toggled = [];
+  clearGrid();
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.add("not-selected");
+  }
+  populate();
+};
