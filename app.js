@@ -11,6 +11,6 @@ app.get("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/public/index.html"));
 });
 
-app.listen(port || process.env.port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
