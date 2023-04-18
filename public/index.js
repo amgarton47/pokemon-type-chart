@@ -40,6 +40,19 @@ const types = [
   "FAIRY",
 ];
 
+const darkModeBtn = document.querySelector(".slider");
+const checkBox = document.getElementById("dark-mode-btn");
+const body = document.getElementsByTagName("body")[0];
+
+if (localStorage.getItem("dark-mode-enabled") == "true") {
+  checkBox.checked = true;
+  body.classList.add("dark-mode");
+}
+
+darkModeBtn.onclick = () => {
+  body.classList.toggle("dark-mode");
+};
+
 const createCell = function (parentId, html) {
   const cell = document.createElement("div");
   cell.innerHTML = html;
