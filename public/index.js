@@ -80,8 +80,18 @@ const clearGrid = () => {
   }
 };
 
-let toggled = ["FIRE", "WATER", "GRASS"];
+let toggled = JSON.parse(sessionStorage.getItem("toggled")) || [
+  "FIRE",
+  "WATER",
+  "GRASS",
+];
 const buttons = Array.from(document.getElementsByClassName("icon"));
+
+for (let i = 0; i < buttons.length; i++) {
+  if (toggled.includes(buttons[i].id.toUpperCase())) {
+    buttons[i].classList.toggle("not-selected");
+  }
+}
 
 const populate = function () {
   // ensure pokemon types are always listed in the same order
@@ -91,6 +101,7 @@ const populate = function () {
   }
   temp = temp.filter((elm) => elm);
   toggled = temp;
+  sessionStorage.setItem("toggled", JSON.stringify(toggled));
 
   const grid = document.getElementById("chart");
   grid.style.gridTemplateColumns = `repeat(${toggled.length + 1}, 1fr)`;
@@ -149,6 +160,7 @@ const noneButton = document.getElementById("none-btn");
 
 allButton.onclick = () => {
   toggled = [...types];
+  sessionStorage.setItem("toggled", JSON.stringify(toggled));
   clearGrid();
 
   for (let i = 0; i < buttons.length; i++) {
@@ -159,6 +171,7 @@ allButton.onclick = () => {
 
 noneButton.onclick = () => {
   toggled = [];
+  sessionStorage.setItem("toggled", JSON.stringify(toggled));
   clearGrid();
 
   for (let i = 0; i < buttons.length; i++) {
